@@ -70613,7 +70613,7 @@
 	
 	    var _this = (0, _possibleConstructorReturn3.default)(this, (App.__proto__ || (0, _getPrototypeOf2.default)(App)).call(this, props));
 	
-	    _this.throttleData = _lodash2.default.throttle(_this.onUpdateReceived, 5000);
+	    _this.throttleData = _lodash2.default.throttle(_this.onUpdateReceived, 500);
 	
 	    _this.state = {
 	      rows: [],
@@ -70636,12 +70636,8 @@
 	  (0, _createClass3.default)(App, [{
 	    key: 'handleConnect',
 	    value: function handleConnect() {
-	
 	      if (socket.connected) {
 	        socket.disconnect();
-	      } else {
-	        console.log('connect socket', socket);
-	        socket.connect();
 	      }
 	    }
 	  }, {
@@ -70670,7 +70666,7 @@
 	          return row.id === id;
 	        })[0];
 	        var keys = (0, _keys2.default)(oldRow);
-	
+	        // adding color property to the row object
 	        keys.forEach(function (key) {
 	          if (key !== 'id') {
 	            var newKey = key + '-color';
@@ -70767,7 +70763,7 @@
 	        _react2.default.createElement(
 	          'button',
 	          { className: 'btn btn-danger', onClick: this.handleConnect },
-	          'Connect/Disconnect'
+	          'Disconnect'
 	        ),
 	        _react2.default.createElement(
 	          _fixedDataTable.Table,

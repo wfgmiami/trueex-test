@@ -27,17 +27,12 @@ export default class App extends Component {
   }
 
   // throttleData returns a function that is executed <= 2 times a sec
-  throttleData = _.throttle(this.onUpdateReceived, 5000);
+  throttleData = _.throttle(this.onUpdateReceived, 500);
 
   handleConnect() {
-
     if(socket.connected){
       socket.disconnect();
-    }else{
-      console.log('connect socket', socket)
-      socket.connect();
     }
-
   };
 
   onSnapshotReceived(data) {
@@ -61,7 +56,7 @@ export default class App extends Component {
       const id = newRow.id;
       const oldRow = rows.filter( row => row.id === id )[0];
       const keys = Object.keys( oldRow );
-
+      // adding color property to the row object
       keys.forEach( key => {
         if( key !== 'id' ){
           let newKey = key + '-color';
@@ -145,7 +140,7 @@ export default class App extends Component {
     const columns = this._generateCols();
     return (
       <div>
-      <button className='btn btn-danger' onClick = { this.handleConnect }>Connect/Disconnect</button>
+      <button className='btn btn-danger' onClick = { this.handleConnect }>Disconnect</button>
       <Table
         rowHeight={30}
         width={window.innerWidth}
